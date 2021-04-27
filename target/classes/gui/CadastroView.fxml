@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="319.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CadastroViewController">
+   <children>
+      <TextField fx:id="userName" layoutX="66.0" layoutY="115.0" prefHeight="31.0" prefWidth="223.0" />
+      <Label layoutX="24.0" layoutY="122.0" text="Nome:" />
+      <Label layoutX="24.0" layoutY="171.0" text="Senha:" />
+      <PasswordField fx:id="passOne" layoutX="66.0" layoutY="164.0" prefHeight="31.0" prefWidth="223.0" />
+      <PasswordField fx:id="passTwo" layoutX="66.0" layoutY="206.0" prefHeight="31.0" prefWidth="223.0" promptText="Repita a senha" />
+      <ImageView fitHeight="74.0" fitWidth="200.0" layoutX="60.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/spfin.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="cadastra" layoutX="202.0" layoutY="281.0" mnemonicParsing="false" onAction="#cadastrarUsuario" prefHeight="31.0" prefWidth="87.0" text="CADASTRAR" />
+      <Button fx:id="cancela" layoutX="97.0" layoutY="281.0" mnemonicParsing="false" onAction="#cancelaInsercao" prefHeight="31.0" prefWidth="87.0" text="CANCELA" />
+      <Label fx:id="msgAlert" alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="245.0" prefHeight="17.0" prefWidth="223.0" textAlignment="CENTER" textFill="#f80101">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+   </children>
+</Pane>
