@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import application.Main;
 import gui.util.Alerts;
 import javafx.fxml.FXML;
@@ -43,6 +47,14 @@ public class MainViewController implements Initializable{
 	
 	@FXML
 	public void logar() {
+		String usuario = user.getText();
+		String senha = password.getText();
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("gpfin");	
+		EntityManager em = emf.createEntityManager();
+		
+		
+		
 		
 	}
 	

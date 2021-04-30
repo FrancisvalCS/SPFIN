@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import application.Main;
+import dao.UsuarioDAO;
 import entities.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class CadastroViewController implements Initializable{
-	
+	private UsuarioDAO usrDao;
 	
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("gpfin");
 	EntityManager em = emf.createEntityManager();
@@ -44,6 +45,7 @@ public class CadastroViewController implements Initializable{
 	
 	@FXML
 	private Button cadastra;
+	
 	
 
 	public void initialize(URL url, ResourceBundle rb) {
@@ -69,19 +71,19 @@ public class CadastroViewController implements Initializable{
 		}else if(valid == null || valid.trim().equals("")) {
 			msgAlert.setText("Repita a senha!");
 		}else if(valid.trim().equals(senha)){
+				Usuario usr = new Usuario();
+				usrDao = new UsuarioDAO();
+
 				Stage msgStage = new Stage();
 				Scene msgScene;
 				
 				FXMLLoader msgLoad = new FXMLLoader(getClass().getResource("/gui/alerts/AlertConfirm.fxml"));
 				Pane pane = msgLoad.load();
+		
+				usr.setNome(name);
+				usr.setSenha(senha);
 				
-				Usuario user = new Usuario(null, name, senha);
-				
-				EntityManagerFactory emf = Persistence.createEntityManagerFactory("gpfin");	
-				EntityManager em = emf.createEntityManager();
-				em.getTransaction().begin();
-				em.persist(user);
-				em.getTransaction().commit();
+				usrDao.persist(usr);
 				
 				msgAlert.setText("");
 				userName.clear();
