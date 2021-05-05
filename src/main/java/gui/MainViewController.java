@@ -4,11 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
 
 import application.Main;
+import dao.UsuarioDAO;
 import gui.util.Alerts;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Pane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
@@ -46,16 +46,26 @@ public class MainViewController implements Initializable{
 	}
 	
 	@FXML
-	public void logar() {
+	public void logar() throws IOException {
 		String usuario = user.getText();
 		String senha = password.getText();
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("gpfin");	
-		EntityManager em = emf.createEntityManager();
-		
-		
-		
-		
+		UsuarioDAO usr = new UsuarioDAO();
+		usr.getUsuario(usuario, senha);
+		if(usr != null) {
+			Stage spfinStage = new Stage();
+			Scene spfinScene;
+			
+			FXMLLoader msgLoad = new FXMLLoader(getClass().getResource("/gui/SpfinView.fxml"));
+			Pane pane = msgLoad.load();
+			
+			spfinScene = new Scene(pane);
+			spfinStage.setScene(spfinScene);
+			spfinStage.setTitle("GPFIN");
+			spfinStage.setResizable(false);
+			spfinStage.show();
+		} 
+
 	}
 	
 

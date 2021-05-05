@@ -37,11 +37,27 @@ public class UsuarioDAO {
 		return entityManager.find(Usuario.class, id);
 	}
 	
+	public Usuario getUsuario(String usuario, String senha) {
+		try {
+			Usuario user = (Usuario) entityManager.createQuery(
+		             "FROM "+Usuario.class.getName())
+		         .setParameter("name", usuario)
+		         .setParameter("senha", senha).getSingleResult();
+		             
+		          return user;
+		}catch(Exception e) {
+			return null;
+		}
+		
+	}
+	
+	
 	//Seleciona e armazena os dados em uma lista
 	@SuppressWarnings("unchecked")
 	public List<Usuario> findAll(){
 		return entityManager.createQuery("FROM "+Usuario.class.getName()).getResultList();
 	}
+	
 	
 	//Persiste os dados no banco
 	public void persist(Usuario user) {
